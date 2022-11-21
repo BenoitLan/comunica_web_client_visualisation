@@ -9,6 +9,9 @@ Github: https://github.com/comunica/jQuery-Widget.js
 to run go into the file 'jQuery-Widget extension'
 
 in terminal enter:
+
 'yarn install' 
+
 and then then 
+
 'yarn run dev'
