@@ -1,0 +1,9 @@
+node_modules
+*.log
+build
+deps/*-browser.js*
+queries.json
+comunica-engine.js
+deploy_rsa
+deploy_rsa.pub
+.tmp-comunica-engine.js

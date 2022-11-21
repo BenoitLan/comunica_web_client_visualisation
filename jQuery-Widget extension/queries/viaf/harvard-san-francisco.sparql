@@ -1,0 +1,9 @@
+# 5. Books by San Franciscans in Harvard Library
+# Datasources: //fragments.dbpedia.org/*/en //data.linkeddatafragments.org/viaf //data.linkeddatafragments.org/harvard
+SELECT ?person ?name ?book ?title {
+  ?person dbpedia-owl:birthPlace [ rdfs:label "San Francisco"@en ].
+  ?viafID schema:sameAs ?person;
+               schema:name ?name.
+  ?book dc:contributor [ foaf:name ?name ];
+              dc:title ?title.
+}

@@ -1,0 +1,98 @@
+{
+  "queryFormats": {
+    "sparql": true,
+    "graphql": true
+  },
+  "branding": {
+    "title": "Query the Web of Linked Data",
+    "title_href": "https://comunica.dev/",
+    "subtitle": "Live in your browser, powered by Comunica",
+    "subtitle_href": "https://comunica.dev/",
+    "page_title": "Comunica Web client"
+  },
+  "map": {
+    "url": "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",
+    "attribution": "Map data &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>"
+  },
+  "solidAuth": {
+    "settingsOnly": true,
+    "defaultIdp": "https://login.inrupt.com/"
+  },
+  "datasources": [
+    {
+      "name": "DBpedia 2016-04",
+      "url": "//fragments.dbpedia.org/2016-04/en"
+    },
+    {
+      "name": "Ruben Verborgh's Profile",
+      "url": "https://ruben.verborgh.org/profile/"
+    },
+    {
+      "name": "Ruben Taelman's Profile",
+      "url": "https://www.rubensworks.net/"
+    },
+    {
+      "name": "DBpedia SPARQL",
+      "url": "https://dbpedia.org/sparql"
+    },
+    {
+      "name": "DBpedia 2015-10",
+      "url": "//fragments.dbpedia.org/2015-10/en"
+    },
+    {
+      "name": "DBpedia 2015-04",
+      "url": "//fragments.dbpedia.org/2015/en"
+    },
+    {
+      "name": "DBpedia 2014",
+      "url": "//fragments.dbpedia.org/2014/en"
+    },
+    {
+      "name": "Ghent University Academic Bibliography",
+      "url": "//data.linkeddatafragments.org/ugent-biblio"
+    },
+    {
+      "name": "Linked Open Vocabularies",
+      "url": "//data.linkeddatafragments.org/lov"
+    },
+    {
+      "name": "Virtual International Authority File (VIAF)",
+      "url": "//data.linkeddatafragments.org/viaf"
+    },
+    {
+      "name": "Harvard Library",
+      "url": "//data.linkeddatafragments.org/harvard"
+    },
+    {
+      "name": "Between Our Worlds 2018-06",
+      "url": "https://data.betweenourworlds.org/2018-06"
+    },
+    {
+      "name": "Wikidata",
+      "url": "https://query.wikidata.org/bigdata/ldf"
+    },
+    {
+      "name": "SNCB",
+      "url": "https://graph.irail.be/sncb/connections"
+    }
+  ],
+  "prefixes": {
+    "rdf":         "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs":        "http://www.w3.org/2000/01/rdf-schema#",
+    "owl":         "http://www.w3.org/2002/07/owl#",
+    "skos":        "http://www.w3.org/2004/02/skos/core#",
+    "xsd":         "http://www.w3.org/2001/XMLSchema#",
+    "dc":          "http://purl.org/dc/terms/",
+    "foaf":        "http://xmlns.com/foaf/0.1/",
+    "dbpedia":     "http://dbpedia.org/resource/",
+    "dbpedia-owl": "http://dbpedia.org/ontology/",
+    "dbpprop":     "http://dbpedia.org/property/",
+    "wdprop":      "http://www.wikidata.org/prop/direct/",
+    "ruben":       "https://ruben.verborgh.org/profile/#",
+    "rubent":      "https://www.rubensworks.net/#",
+    "schema":      "http://schema.org/",
+    "bow":         "https://betweenourworlds.org/ontology/",
+    "lc":          "http://semweb.mmlab.be/ns/linkedconnections#"
+  },
+  "queries": "(Will be generated from the 'queries' folder by running the './queries-to-json' script.)"
+}
