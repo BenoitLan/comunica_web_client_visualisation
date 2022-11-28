@@ -34,7 +34,7 @@ jQuery-Widget extension/index.html
 
 We add all the necessary data to the variable *allMermaidInput*.
 
-All the data will be appended to this variable with the button "execute query" and visualized with the button "get query plan"
+All the data will be appended to this variable with the button *execute query* and visualized with the button *get query plan*
 
 An example of how the data of *allMermaidInput* could look like:
 
