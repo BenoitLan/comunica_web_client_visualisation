@@ -12,13 +12,14 @@ export function input_sources(config_text){
 
 let allMermaidInput = 'flowchart TB\n'; // added myself, Benoît
 let requestlogCat = ''; // added myself, Benoît
-let lastlogELement = ''; // added myself, Benoît
+let lastlogELements = ''; // added myself, Benoît
+let lastlogELementsFull = ''; // added myself, Benoît
 let mermaidInputSources = ''; // added myself, Benoît
 let mermaidInputSourcesArray = []; // added myself, Benoît
 let mermaidData = '';
 let mermaidDataIndex = 0;
 let mermaidDataSubgraphIndex = 0;
-let lastlog = '';
+let subgraphreqjoinindex = 0;
 
 export async function _startExecutionPlan() { // added, self made
     allMermaidInput += 'subgraph sources\n'
@@ -52,7 +53,6 @@ export async function _startExecutionPlan() { // added, self made
 
 
 
-
     var element = document.querySelector(".mermaid");
 
     var insertSvg = function(svgCode, bindFunctions) {
@@ -65,18 +65,43 @@ export async function _startExecutionPlan() { // added, self made
 
 export function _getLogData(log){ 
     // console.log("LOG: \n", log);
-    lastlog += log;
-    lastlog += '\n';
+    let elseString = '';
+    let elseReg = /(.+) {/g;
     if (log.includes('Requesting')){
+        lastlogELements += 'request\n';
 
+    } else if (log.includes('Identified')){
+
+    } else {
+        elseString = elseReg.exec(log);
+        console.log("haha: ", elseString[1], " \n");
+        lastlogELements += elseString[1] + '\n';
     }
+
+}
+
+function combine_getLogData(){
+    lastlogELementsFull += "subgraph " + "log_before_match_" + subgraphreqjoinindex + "\n";
+    if (lastlogELements == ""){
+        lastlogELementsFull += 'log_before_match_id' + subgraphreqjoinindex + '["' + '\nnothing\n' + '"]';
+    } else {
+        lastlogELementsFull += 'log_before_match_id' + subgraphreqjoinindex + '["' + lastlogELements + '"]';
+    }
+    lastlogELementsFull += '\nend\n';
+
 }
 
 export function _getResultData(result_){
+
+    combine_getLogData();
+    mermaidData += '\n' + lastlogELementsFull + '\n';
+    mermaidData += '\n' + "log_before_match_" + subgraphreqjoinindex + " --> " + 'result' + mermaidDataSubgraphIndex+'\n';
+
+
+    console.log("lastlogELementsFull: \n", lastlogELementsFull);
     if (mermaidDataSubgraphIndex != 0){ // for the first result, so that next results will connect correctly according to the mermaid-js syntax
         mermaidData += 'result' + (mermaidDataSubgraphIndex-1) + '-->' + 'result' + mermaidDataSubgraphIndex+'\n';
     }
-    console.log("last log: ", lastlog);
     mermaidData += 'subgraph result' + mermaidDataSubgraphIndex + '\n'
     for (const [key, value] of Object.entries(result_)) {
         let valuerep = value.replace(/\"/g, "&#34");// MERMAID DOESN'T ACCEPT " BUT solvable with unicode! :)
@@ -90,7 +115,11 @@ export function _getResultData(result_){
     mermaidData += 'style ' + 'result' + mermaidDataSubgraphIndex + ' fill:#eeeeee,stroke:#333,stroke-width:2px\n'
     mermaidData += 'end\n'
     mermaidDataSubgraphIndex += 1;
-    lastlog = ''; // delete last log before result
+
+    lastlogELements = ''; // resest lastlogelements because we append this to the current result
+    lastlogELementsFull = ''; // resest lastlogELementsFull because we append this to the current result
+    subgraphreqjoinindex+=1;
+
 }
 
 export function _getInputSources(inputSources_){ // for example inputsources RubenTaelman and RubenVerborgh
