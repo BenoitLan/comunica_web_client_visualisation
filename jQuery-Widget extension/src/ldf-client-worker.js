@@ -1,3 +1,5 @@
+import {input_sources} from '/src/functions_benoit.js'
+
 var engine = null;
 var RdfString = require('rdf-string');
 var LoggerPretty = require('@comunica/logger-pretty').LoggerPretty;
@@ -73,13 +75,9 @@ var handlers = {
           }).catch(postError);
           break;
         }
-        console.log("config.context: ", config.context);
-        for (let i = 0 ; i < config.context["@comunica/bus-rdf-resolve-quad-pattern:sources"].length ; i++){
-          console.log(config.context["@comunica/bus-rdf-resolve-quad-pattern:sources"][i]["value"]); // displays the amount of input sources
-          inputSources = config.context["@comunica/bus-rdf-resolve-quad-pattern:sources"][i]["value"];
-          postMessage({ type: 'inputSources', inputSources: inputSources}); // added myself to add input sources! :) 
-        }
-        console.log("URL: ", config.context["@comunica/bus-rdf-resolve-quad-pattern:sources"]); // it starts from here I think!
+
+        input_sources(config.context); // added -> Benoit
+
         if (resultsIterator) {
           if (resultsToTree) {
             bindingsStreamToGraphQl(resultsIterator, result.context, { materializeRdfJsTerms: true })
@@ -120,10 +118,10 @@ var handlers = {
   getWebIdName: function ({ webId, context }) {
     const config = {
       query: `
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?name WHERE {
-  <${webId}> foaf:name ?name.
-}`,
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      SELECT ?name WHERE {
+        <${webId}> foaf:name ?name.
+      }`,
       context: {
         ...context,
         'sources': [webId],
