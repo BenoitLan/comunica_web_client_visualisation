@@ -11,8 +11,6 @@ var QueryEngineBase = require('@comunica/actor-init-query').QueryEngineBase;
 // The active fragments client and the current results
 var resultsIterator;
 
-let inputSources = ''; // added by Benoît, will have all the input sources, for example: Ruben Verborgh's profile and Ruben Taelman's profile. 
-
 // Set up logging
 var logger = new LoggerPretty({ level: 'info' });
 logger.log = function (level, message, data) {
@@ -76,7 +74,7 @@ var handlers = {
           break;
         }
 
-        input_sources(config.context); // added -> Benoit
+        input_sources(config.context); // added ==> Benoit
 
         if (resultsIterator) {
           if (resultsToTree) {

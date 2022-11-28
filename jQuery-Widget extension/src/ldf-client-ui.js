@@ -27,17 +27,6 @@ require('leaflet/dist/images/marker-icon.png');
 require('leaflet/dist/images/marker-icon-2x.png');
 require('leaflet/dist/images/marker-shadow.png');
 
-// const requestlog = []; // SELF MADE!!! -> Benoît // not used anymore, we need to concat strings to each other to use it in Mermaid-JS
-let allMermaidInput = 'flowchart TB\n'; // added myself, Benoît
-let requestlogCat = ''; // added myself, Benoît
-let lastlogELement = ''; // added myself, Benoît
-let mermaidInputSources = ''; // added myself, Benoît
-let mermaidInputSourcesArray = []; // added myself, Benoît
-let mermaidData = '';
-let mermaidDataIndex = 0
-let mermaidDataSubgraphIndex = 0
-
-
 // Polyfill process for readable-stream when it is not defined
 if (typeof global.process === 'undefined')
   global.process = require('process');
@@ -107,7 +96,7 @@ if (typeof global.process === 'undefined')
           $stop = this.$stop = $('.stop', $element),
           $start = this.$start = $('.start', $element),
 
-          $execute_plan = this.$execute_plan = $('.execute_plan', $element), // added!
+          $execute_plan = this.$execute_plan = $('.execute_plan', $element), // added! ==> benoit
 
           $queryTexts = $('.querytext'),
           $queryContexts = $('.querycontext'),
@@ -696,7 +685,7 @@ if (typeof global.process === 'undefined')
 
   
 
-    
+
 
     // Starts query execution
     _startExecution: function () {
@@ -991,13 +980,13 @@ if (typeof global.process === 'undefined')
         // console.log("DATA: ", data);
         switch (data.type) {
         case 'queryInfo': return self._initResults(data.queryType);
-        case 'result':    return self._addResult(data.result), _getResultData(data.result); //added self._getResultData(data.result);
+        case 'result':    return self._addResult(data.result), _getResultData(data.result); //added self._getResultData(data.result); ==> benoit
         case 'end':       return self._endResults();
-        case 'log':       return self._logAppender(data.log),_getLogData(data.log); // added self._getLogData(data.log);
+        case 'log':       return self._logAppender(data.log),_getLogData(data.log); // added self._getLogData(data.log); ==> benoit
         case 'error':     return this.onerror(data.error);
         case 'webIdName': return self._setWebIdName(data.name);
 
-        case 'inputSources': return _getInputSources(data.inputSources); // added myself to return the inputsources! Look at ldf-client-worker.js
+        case 'inputSources': return _getInputSources(data.inputSources); // added myself to return the inputsources! Look at ldf-client-worker.js ==> benoit
         }
       };
       this._queryWorker.onerror = function (error) {

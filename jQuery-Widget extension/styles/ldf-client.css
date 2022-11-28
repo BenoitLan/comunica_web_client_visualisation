@@ -13,7 +13,7 @@ html, input, textarea, button, pre {
 }
 
 body {
-  max-width: 1200px;
+  max-width: 1200px; /**adjusted ==> benoit**/
   margin: 0 auto;
   padding: 1em 3em;
   background: white;
@@ -276,10 +276,13 @@ textarea {
   font-weight: normal;
 }
 
+/** start added ==> benoit **/
 .mermaid {
   overflow: hidden;
 }
 .flowchart { width: 100%; overflow: scroll; height: 40em; min-width: 200px; max-width: 1200px;}
+/** end added ==> benoit **/
+
 
 .results, .log{
   width: 100%;
