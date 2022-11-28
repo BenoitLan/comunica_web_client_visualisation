@@ -34,36 +34,45 @@ jQuery-Widget extension/index.html
 
 We add all the necessary data to the variable *allMermaidInput*.
 
-All the data will be appended to this variable with the button "execute query" and visualized with the button "get query plan"
+All the data will be appended to this variable with the button *execute query* and visualized with the button *get query plan*
 
 An example of how the data of *allMermaidInput* could look like:
 
-allMermaidInput:  flowchart TB
+        flowchart TB
+        subgraph sources
+        id1{{sources}}-->http://fragments.dbpedia.org/2016-04/en
+        id1{{sources}}-->https://ruben.verborgh.org/profile/
+        id1{{sources}}-->https://www.rubensworks.net/
+        http://fragments.dbpedia.org/2016-04/en & https://ruben.verborgh.org/profile/ & https://www.rubensworks.net/
+        style sources fill:#f44336,stroke:#333,stroke-width:4px
+        end
+        sources-->|results|result0
+        subgraph result0
+        row0(?name)-->row0h("Terry Gilliam"@en)
+        row1(?title)-->row1h("12 Monkeys"@en)
+        row2(?movie)-->row2h(http://dbpedia.org/resource/12_Monkeys)
+        style result0 fill:#eeeeee,stroke:#333,stroke-width:2px
+        end
+        result0-->result1
+        subgraph result1
+        row3(?name)-->row3h("Robert Redford"@en)
+        row4(?title)-->row4h("A River Runs Through It (film)"@en)
+        row5(?movie)-->row5h(http://dbpedia.org/resource/A_River_Runs_Through_It_(film))
+        style result1 fill:#eeeeee,stroke:#333,stroke-width:2px
+        end
 
-subgraph sources
+But there are some illegal characters in mermaid-js so we use the unicode code for it:
 
-id1{{sources}}-->http://fragments.dbpedia.org/2016-04/en
+" is &#34
 
-id1{{sources}}-->https://ruben.verborgh.org/profile/
+@ is &#64
 
-id1{{sources}}-->https://www.rubensworks.net/
+( is &#40
 
-http://fragments.dbpedia.org/2016-04/en & https://ruben.verborgh.org/profile/ & https://www.rubensworks.net/
+) is &#41
 
-style sources fill:#f44336,stroke:#333,stroke-width:4px
+which generates next graph:
 
-end
+![image](https://user-images.githubusercontent.com/109519721/204300055-1d46bbc7-95ff-47ac-a4fa-50290e407801.png)
 
-sources-->|results|result0
 
-subgraph result0
-
-row0(?name)-->row0h(&#34Terry Gilliam&#34&#64en)
-
-row1(?title)-->row1h(&#3412 Monkeys&#34&#64en)
-
-row2(?movie)-->row2h(http://dbpedia.org/resource/12_Monkeys)
-
-style result0 fill:#eeeeee,stroke:#333,stroke-width:2px
-
-end
