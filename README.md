@@ -61,6 +61,16 @@ An example of how the data of *allMermaidInput* could look like:
         style result1 fill:#eeeeee,stroke:#333,stroke-width:2px
         end
 
+But there are some illegal characters in mermaid-js so we use the unicode code for it:
+
+" is &#34
+
+@ is &#64
+
+( is &#40
+
+) is &#41
+
 which generates next graph:
 
 ![image](https://user-images.githubusercontent.com/109519721/204300055-1d46bbc7-95ff-47ac-a4fa-50290e407801.png)
