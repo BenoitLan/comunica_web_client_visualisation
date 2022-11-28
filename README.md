@@ -75,4 +75,11 @@ which generates next graph:
 
 ![image](https://user-images.githubusercontent.com/109519721/204300055-1d46bbc7-95ff-47ac-a4fa-50290e407801.png)
 
+I have also added a subgraph to every match with what happend before getting a match:
+
+![image](https://user-images.githubusercontent.com/109519721/204369260-3559cbc0-f021-406d-a70e-f0c4e5f7efce.png)
+
+This can be used and expanded later on
+
+
 
