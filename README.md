@@ -38,32 +38,18 @@ All the data will be appended to this variable with the button "execute query" a
 
 An example of how the data of *allMermaidInput* could look like:
 
-allMermaidInput:  flowchart TB
-
-subgraph sources
-
-id1{{sources}}-->http://fragments.dbpedia.org/2016-04/en
-
-id1{{sources}}-->https://ruben.verborgh.org/profile/
-
-id1{{sources}}-->https://www.rubensworks.net/
-
-http://fragments.dbpedia.org/2016-04/en & https://ruben.verborgh.org/profile/ & https://www.rubensworks.net/
-
-style sources fill:#f44336,stroke:#333,stroke-width:4px
-
-end
-
-sources-->|results|result0
-
-subgraph result0
-
-row0(?name)-->row0h(&#34Terry Gilliam&#34&#64en)
-
-row1(?title)-->row1h(&#3412 Monkeys&#34&#64en)
-
-row2(?movie)-->row2h(http://dbpedia.org/resource/12_Monkeys)
-
-style result0 fill:#eeeeee,stroke:#333,stroke-width:2px
-
-end
+        allMermaidInput:  flowchart TB
+        subgraph sources
+        id1{{sources}}-->http://fragments.dbpedia.org/2016-04/en
+        id1{{sources}}-->https://ruben.verborgh.org/profile/
+        id1{{sources}}-->https://www.rubensworks.net/
+        http://fragments.dbpedia.org/2016-04/en & https://ruben.verborgh.org/profile/ & https://www.rubensworks.net/
+        style sources fill:#f44336,stroke:#333,stroke-width:4px
+        end
+        sources-->|results|result0
+        subgraph result0
+        row0(?name)-->row0h("Terry Gilliam"@en)
+        row1(?title)-->row1h("12 Monkeys"@en)
+        row2(?movie)-->row2h(http://dbpedia.org/resource/12_Monkeys)
+        style result0 fill:#eeeeee,stroke:#333,stroke-width:2px
+        end
