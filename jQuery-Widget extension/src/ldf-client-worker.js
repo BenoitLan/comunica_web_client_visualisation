@@ -1,4 +1,4 @@
-import {input_sources} from '/src/functions_benoit.js'
+import {input_sources} from '/src/functions_benoit.js' // ==> benoit
 
 var engine = null;
 var RdfString = require('rdf-string');

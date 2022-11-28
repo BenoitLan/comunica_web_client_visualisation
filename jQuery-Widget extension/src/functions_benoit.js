@@ -10,7 +10,6 @@ export function input_sources(config_text){
     console.log("URL: ", config_text["@comunica/bus-rdf-resolve-quad-pattern:sources"]); // it starts from here I think!
 }
 
-// const requestlog = []; // SELF MADE!!! -> Benoît // not used anymore, we need to concat strings to each other to use it in Mermaid-JS
 let allMermaidInput = 'flowchart TB\n'; // added myself, Benoît
 let requestlogCat = ''; // added myself, Benoît
 let lastlogELement = ''; // added myself, Benoît
@@ -23,7 +22,7 @@ let mermaidDataSubgraphIndex = 0
 export async function _startExecutionPlan() { // added, self made
     allMermaidInput += 'subgraph sources\n'
     allMermaidInput += mermaidInputSources // add sources to all the mermaid input
-    if (mermaidInputSourcesArray.length > 1){ // if multiple sources are used all will direct to one block
+    if (mermaidInputSourcesArray.length > 1){ // if multiple sources are used all will visible in one block
         let i = 0;
         for (i = 0 ; i < mermaidInputSourcesArray.length-1 ; i++){
         allMermaidInput += mermaidInputSourcesArray[i];
