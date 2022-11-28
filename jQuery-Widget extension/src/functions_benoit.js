@@ -47,12 +47,6 @@ export async function _startExecutionPlan() { // added, self made
     allMermaidInput += mermaidData; // append all the subgraph data logs
     console.log("allMermaidInput: ", allMermaidInput);
 
-
-
-
-
-
-
     var element = document.querySelector(".mermaid");
 
     var insertSvg = function(svgCode, bindFunctions) {
@@ -62,7 +56,8 @@ export async function _startExecutionPlan() { // added, self made
     var graph = mermaid.render("graphDiv", allMermaidInput, insertSvg);
 }
 
-
+// A function that append everyhting that happend before the match to a string
+// we will append this data to the match
 export function _getLogData(log){ 
     // console.log("LOG: \n", log);
     let elseString = '';
