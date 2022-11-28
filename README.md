@@ -38,7 +38,7 @@ All the data will be appended to this variable with the button *execute query* a
 
 An example of how the data of *allMermaidInput* could look like:
 
-        allMermaidInput:  flowchart TB
+        flowchart TB
         subgraph sources
         id1{{sources}}-->http://fragments.dbpedia.org/2016-04/en
         id1{{sources}}-->https://ruben.verborgh.org/profile/
@@ -53,3 +53,16 @@ An example of how the data of *allMermaidInput* could look like:
         row2(?movie)-->row2h(http://dbpedia.org/resource/12_Monkeys)
         style result0 fill:#eeeeee,stroke:#333,stroke-width:2px
         end
+        result0-->result1
+        subgraph result1
+        row3(?name)-->row3h("Robert Redford"@en)
+        row4(?title)-->row4h("A River Runs Through It (film)"@en)
+        row5(?movie)-->row5h(http://dbpedia.org/resource/A_River_Runs_Through_It_(film))
+        style result1 fill:#eeeeee,stroke:#333,stroke-width:2px
+        end
+
+which generates next graph:
+
+![image](https://user-images.githubusercontent.com/109519721/204300055-1d46bbc7-95ff-47ac-a4fa-50290e407801.png)
+
+
