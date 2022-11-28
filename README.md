@@ -15,3 +15,17 @@ in terminal enter:
 and then then 
 
 *yarn run dev*
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - -
+
+Changed files:
+
+jQuery-Widget extension/src/ldf-client-ui.js 
+
+jQuery-Widget extension/src/ldf-client-worker.js
+
+jQuery-Widget extension/styles/ldf-client.css
+
+jQuery-Widget extension/index.html
