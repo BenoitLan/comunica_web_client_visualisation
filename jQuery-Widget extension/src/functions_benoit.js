@@ -16,8 +16,9 @@ let lastlogELement = ''; // added myself, Benoît
 let mermaidInputSources = ''; // added myself, Benoît
 let mermaidInputSourcesArray = []; // added myself, Benoît
 let mermaidData = '';
-let mermaidDataIndex = 0
-let mermaidDataSubgraphIndex = 0
+let mermaidDataIndex = 0;
+let mermaidDataSubgraphIndex = 0;
+let lastlog = '';
 
 export async function _startExecutionPlan() { // added, self made
     allMermaidInput += 'subgraph sources\n'
@@ -38,10 +39,8 @@ export async function _startExecutionPlan() { // added, self made
     allMermaidInput += 'end\n';
     allMermaidInput += 'sources-->|results|result0\n';
 
-    // mermaidInputSources += requestlogCat;
     console.log("starting execution plan...");
-    // appended all the resources to allMermaidInput
-    // continue appending to allMermaidInput :D -Benoît
+
     console.log("mermaidData: \n", mermaidData)
 
     allMermaidInput += mermaidData; // append all the subgraph data logs
@@ -60,34 +59,22 @@ export async function _startExecutionPlan() { // added, self made
         element.innerHTML = svgCode;
     };
 
-
-    // requestlogCat += 'EndOfExecutionLog';
-
     var graph = mermaid.render("graphDiv", allMermaidInput, insertSvg);
 }
 
 
-export function _getLogData(log){ //  BE AWARE! MERMAID-JS DOESN'T ACCEPT THE SYMBOL '%'!!!!! SO I will temporarly use the string until the first '%' character // opgelost door bv id[.....]
-    // console.log("AAAAAAAAAAAAAAA: ", log); // need to find a way
-    console.log("LOG: \n", log);
+export function _getLogData(log){ 
+    lastlog += log;
     if (log.includes('Requesting')){
-        // // console.log("BEVAT REQUESTING!!!!!!!!!!!!!@@@@@@@@@@@@@");/
-        // let myregexp = new RegExp("Requesting (.+ ){");
-        // // let myregexp = new RegExp("Requesting ([^?]*)"); // matches everything untill the symbol '?'
-        // let mymatch = myregexp.exec(log);
-        // mymatch[1] = mymatch[1].replace(/%/g, ""); // replacing '%' symbol by nothing because Mermaid-JS won't accept this. 
-        // console.log("ok", mymatch[1]);
-        // requestlogCat += mymatch[1];
-        // requestlogCat += '-->|Request|';
-        // lastlogELement = mymatch[1];
+
     }
 }
 
 export function _getResultData(result_){
-    if (mermaidDataSubgraphIndex != 0){
-        mermaidData += 'result' + (mermaidDataSubgraphIndex-1) +'-->' + 'result' + mermaidDataSubgraphIndex+'\n';
+    if (mermaidDataSubgraphIndex != 0){ // for the first result, so that next results will connect correctly according to the mermaid-js syntax
+        mermaidData += 'result' + (mermaidDataSubgraphIndex-1) + '-->' + 'result' + mermaidDataSubgraphIndex+'\n';
     }
-
+    console.log("last log: ", lastlog);
     mermaidData += 'subgraph result' + mermaidDataSubgraphIndex + '\n'
     for (const [key, value] of Object.entries(result_)) {
         let valuerep = value.replace(/\"/g, "&#34");// MERMAID DOESN'T ACCEPT " BUT solvable with unicode! :)
@@ -101,6 +88,7 @@ export function _getResultData(result_){
     mermaidData += 'style ' + 'result' + mermaidDataSubgraphIndex + ' fill:#eeeeee,stroke:#333,stroke-width:2px\n'
     mermaidData += 'end\n'
     mermaidDataSubgraphIndex += 1;
+    lastlog = ''; // delete last log before result
 }
 
 export function _getInputSources(inputSources_){ // for example inputsources RubenTaelman and RubenVerborgh
