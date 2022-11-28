@@ -64,7 +64,9 @@ export async function _startExecutionPlan() { // added, self made
 
 
 export function _getLogData(log){ 
+    // console.log("LOG: \n", log);
     lastlog += log;
+    lastlog += '\n';
     if (log.includes('Requesting')){
 
     }
